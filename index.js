@@ -6,6 +6,10 @@ const fs = require('fs');
 
 require('dotenv').config();
 
+console.log('process.env.RPC_URL', process.env.RPC_URL);
+console.log('process.env.SMART_CONTRACT', process.env.SMART_CONTRACT);
+console.log('process.env.GROUP_ID', process.env.GROUP_ID);
+
 let web3 = new Web3(process.env.RPC_URL);
 
 const smc = new web3.eth.Contract(ABI, process.env.SMART_CONTRACT);
