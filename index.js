@@ -15,8 +15,11 @@ const api = new TG({
   token: process.env.TOKEN
 })
 
-smc.events.NewLandPrice({}, () => {}).on('data', (event) => {
-  let foundationType = '';
+smc.events.NewLandPrice({}, () => { }).on('data', (event) => {
+  console.log("NEW EVENT");
+
+  try {
+    let foundationType = '';
 
   switch (event.returnValues.foundationType) {
     case '1':
@@ -67,14 +70,16 @@ smc.events.NewLandPrice({}, () => {}).on('data', (event) => {
 ${sentences[event.returnValues.foundationType]}
 
 Map position: (${event.returnValues.x}, ${event.returnValues.y})
-${event.returnValues.foundationType === 1 ? `Price:  ${parseFloat(web3.utils.fromWei(event.returnValues.currentPrice)).toFixed(2)} wLAND\n` : ''}
+${event.returnValues.foundationType === 1 ? `Price:  ${parseFloat(web3.utils.fromWei(event.returnValues.currentPrice)).toFixed(2)} wLAND` : ''}
 Next price for a land in this region: ${parseFloat(web3.utils.fromWei(event.returnValues.newPrice)).toFixed(2)} wLAND
 
 If you want to be conqueror, go to: app.apwars.farm
       `,
       photo: fs.createReadStream(photos[event.returnValues.foundationType])
     }); 
-  
+  } catch (e) {
+    console.log(e);
+  }
 });
 
 bot.onText(/\/start/, (msg) => {
@@ -91,3 +96,10 @@ bot.on('message', (msg) => {
   const chatId = msg.chat.id;
   console.log(chatId);
 });
+
+const test = async () => {
+  const w = await smc.methods.getLandPriceByRegion(1, 1).call();
+  console.log(w.toString());
+}
+
+test();
