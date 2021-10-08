@@ -1,0 +1,23 @@
+{
+  "name": "apwars-landsale-tgbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "node-telegram-bot-api": "^0.54.0",
+    "telegram-bot-api": "^2.0.1",
+    "web3": "^1.6.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com-apwars:apwars/apwars-landsale-tgbot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
